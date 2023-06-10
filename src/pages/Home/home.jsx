@@ -1,14 +1,16 @@
 import React from 'react';
 import Header from '../../components/Header/header';
 import Footer from '../../components/Footer/footer';
-import HeaderNavbar from '../../components/Navbar/navbar';
+import Navbar from '../../components/Navbar/navbar';
+import ListTour from '../../components/list-tour';
 
 const Home = () => {
   return (
     <div>
         <Header></Header>
-        <HeaderNavbar></HeaderNavbar>
+        <Navbar></Navbar>
       Home
+      <ListTour></ListTour>
       <Footer></Footer>
     </div>
   );

@@ -1,14 +1,42 @@
-
 import React from 'react';
-const HeaderNavbar = () => {
+
+const Navbar = () => {
   return (
-    <div className="row">
-    <a href="/" className="col-3">Homepage</a>
-    <a href="/blog" className="col-3">Travel Handbook</a>
-    <a href="/introduction" className="col-3">Introduction</a>
-    <a href="/support" className="col-3">Support</a>
-    </div>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <a className="nav-link" href="/">Homepage</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/services">Service</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/blogs">Travel Handbook</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/introduction">Introduction</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/support">Support</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 
-export default HeaderNavbar;
+export default Navbar;
