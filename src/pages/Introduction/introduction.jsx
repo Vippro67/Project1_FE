@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import Header from '../../components/Header/header';
-import Footer from '../../components/Footer/footer';
-import Navbar from '../../components/Navbar/navbar';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
+import Navbar from '../../components/navbar';
 
 const Introduction = () => {
   return (

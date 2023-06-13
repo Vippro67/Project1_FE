@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import BlogDataService from "../../service/blog"
-import Header from '../../components/Header/header';
-import Footer from '../../components/Footer/footer';
-import Navbar from '../../components/Navbar/navbar';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
+import Navbar from '../../components/navbar';
+import axios from 'axios';
+import Card from 'react-bootstrap/Card';
+import moment from 'moment/moment';
+import { Container } from 'react-bootstrap';
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
 
@@ -11,13 +14,9 @@ const Blog = () => {
   }, [blogs]);
 
   const fetchBlogs = async () => {
-    try {
-      const response = await BlogDataService.getAll();
-      setBlogs(response.data);
-    } catch (error) {
-      console.error('Error fetching blogs:', error);
-    }
-  };
+    const response = await axios.get('http://localhost:8080/api/v1/blogs')
+    setBlogs(response.data)
+  }
 
   return (
     <div>
@@ -27,16 +26,19 @@ const Blog = () => {
       {blogs.length === 0 ? (
         <p>No blogs found.</p>
       ) : (
-        <ul>
-          {blogs.map(blog => (
-            <li key={blog.id}>
-              <h2>{blog.title}</h2>
-              <p>{blog.content}</p>
-              <p>Author: {blog.author}</p>
-              <hr />
-            </li>
-          ))}
-        </ul>
+        <Container>
+        {blogs.map(blog => (
+          <Card key={blog._id} className='card-body'>
+            <Card.Title>{blog.title}</Card.Title>
+            <Card.Text>{blog.content}</Card.Text>
+            <Card.Text> 
+              {blog.tag}
+              </Card.Text>
+            <Card.Text>{moment(blog.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</Card.Text>
+            <hr />
+          </Card>
+        ))}
+      </Container>
       )}
       <Footer></Footer>
     </div>
