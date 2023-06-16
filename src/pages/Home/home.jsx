@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Navbar from '../../components/navbar';
-import ListTour from '../../components/list-tour';
+import ListDestination from '../../components/list-destination';
 import SlideShow from '../../components/slide-show';
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
         <Navbar></Navbar>
         <SlideShow></SlideShow>
       Home
-      <ListTour></ListTour>
+      <ListDestination></ListDestination>
       <Footer></Footer>
     </div>
   );
