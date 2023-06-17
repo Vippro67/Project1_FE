@@ -12,6 +12,9 @@ import { Pagination } from 'react-bootstrap';
 const ListDestination = () => {
     const [destinations, setDestinations] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const urlParams = new URLSearchParams(window.location.search);
+    const page = urlParams.get('page');
+    if (page !== null && page!==currentPage)  setCurrentPage(page);
 
     useEffect(() => {
         fetchDestinations();
@@ -19,18 +22,20 @@ const ListDestination = () => {
 
     const fetchDestinations = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/v1/destinations?page=${currentPage}`);
-            setDestinations(response.data);
+            if (currentPage != null) { const response = await axios.get(`http://localhost:8080/api/v1/destinations?page=${currentPage}`); setDestinations(response.data);}
+            else { const response = await axios.get(`http://localhost:8080/api/v1/destinations`); setDestinations(response.data);}
+
+            
         } catch (error) {
             console.error('Error fetching destinations:', error);
         }
     };
     const handleNextPage = () => {
-        setCurrentPage(prevPage => prevPage + 1);
+        setCurrentPage(page);
     };
 
     const handlePrevPage = () => {
-        setCurrentPage(prevPage => prevPage - 1);
+        setCurrentPage(page);
     };
     return (
         <Container style={{ display: "flex", flexWrap: 'wrap', gap: '30px', padding: '30px auto', backgroundColor: '#fbd8fd' }}>
@@ -63,8 +68,8 @@ const ListDestination = () => {
             )}
             <Container style={{ width: {} }}>
                 <Pagination style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Pagination.Prev onClick={handlePrevPage} />
-                    <Pagination.Next onClick={handleNextPage} />
+                    <Pagination.Prev onClick={handlePrevPage} href={`/?page=${currentPage - 1}`} />
+                    <Pagination.Next onClick={handleNextPage} href={`/?page=${currentPage === null ?(2):(currentPage-(-1))}`} />
                 </Pagination>
             </Container>
         </Container>

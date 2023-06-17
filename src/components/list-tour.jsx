@@ -1,7 +1,11 @@
 import axios from 'axios';
 import React from 'react';
 import { useEffect, useState } from 'react';
-const ListTour = () => {
+import { useParams } from 'react-router-dom';
+import moment from 'moment/moment';
+import { Card } from 'react-bootstrap';
+const ListTour = (props) => {
+    const id = props.id;
     const [tours, setTour] = useState([]);
 
     useEffect(() => {
@@ -10,22 +14,34 @@ const ListTour = () => {
 
     const fetchTour = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/v1/tours');
+            const response = await axios.get(`http://localhost:8080/api/v1/tours/destination/${id}`);
             setTour(response.data);
+
         } catch (error) {
-            console.error('Error fetching tour:', error);
+            console.error('Error fetching destinations:', error);
         }
     };
 
     return (
-        <div>{tours.map(tour => (
-            <li key={tour._id}>
-                <h2>{tour.tourName}</h2>
-                <p>{tour.destination}</p>
-                <p>{tour.dateFrom}</p>
-                <p>{tour.price}</p>
-            </li>
-        ))}</div>)
+        <div>
+            <h2>Chọn chuyến đi ngay tại đây </h2>
+            {tours.map(tour => {
+                const tourDateFrom = moment(tour.dateFrom);
+                const currentDate = moment();
+                if (tourDateFrom.isAfter(currentDate)) {
+                    return (
+                        <Card key={tour._id}>
+                            <h5>{tour.tourName}</h5>
+                            <p>Ngày bắt đầu: {tourDateFrom.format('MMMM Do YYYY')}</p>
+                            <p>Ngày kết thúc: {moment(tour.dateTo).format('MMMM Do YYYY')}</p>
+                            <p>Thành tiền: {tour.price}</p>
+                        </Card>
+                    );
+                }
+
+                return null;
+            })}
+        </div>)
 };
 
 export default ListTour;

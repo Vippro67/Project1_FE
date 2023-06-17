@@ -7,7 +7,8 @@ import { useEffect, useState } from 'react';
 import { Carousel, Container, Row, Col, Image } from 'react-bootstrap';
 import axios from 'axios';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-const Tour = () => {
+import ListTours from '../../components/list-tour';
+const Destination = () => {
   const { id } = useParams();
   const [destination, setDestination] = useState(null);
 
@@ -43,6 +44,7 @@ const Tour = () => {
           <Image src={main_img} alt="Main Image" fluid />
         </Col>
       </Row>
+      <ListTours id={id}  ></ListTours>
       <Row>
         <Col>
           <h3>Image Gallery</h3>
@@ -60,4 +62,4 @@ const Tour = () => {
   );
 };
 
-export default Tour;
+export default Destination;
