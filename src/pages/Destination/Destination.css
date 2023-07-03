@@ -1,0 +1,20 @@
+.full-img {
+  display: block;
+  width: 100%;
+  height: 85vh;
+}
+.display-image {
+  max-width: 80vw;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+}
+
+.thumb-bar img {
+  display: block;
+  width: 20%;
+  max-height: 150px;
+  float: left;
+  cursor: pointer;
+}

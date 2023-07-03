@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment/moment';
-import { Card } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 const ListTour = (props) => {
@@ -29,7 +29,7 @@ const ListTour = (props) => {
             setTour(response.data);
 
         } catch (error) {
-            console.error('Error fetching destinations:', error);
+            console.error('Error fetching tour by destinations:', error);
         }
     };
 
@@ -41,12 +41,48 @@ const ListTour = (props) => {
                 const currentDate = moment();
                 if (tourDateFrom.isAfter(currentDate)) {
                     return (
-                        <Card key={tour._id} onClick={() => openPopup(tour)}>
-                            <h5>{tour.tourName}</h5>
-                            <p>Ngày bắt đầu: {tourDateFrom.format('MMMM Do YYYY')}</p>
-                            <p>Ngày kết thúc: {moment(tour.dateTo).format('MMMM Do YYYY')}</p>
-                            <p>Thành tiền: {tour.price}</p>
+                       <Container
+                       style={{
+                        display: "flex",
+                        flexWrap: 'wrap',
+                        gap: '30px',
+                        padding: '30px auto',
+                        border: '1px solid #fbd8fd',
+
+                    }}
+                    >
+                         <Card
+                            key={tour._id}
+                            className="destination-card"
+                            style={{
+                                width: '400px',
+                                minWidth: '320px',
+                                boxShadow: '0 0 10px rgba(0, 0, 0, 0.195)',
+                                margin: 'auto'
+                            }}
+                            onClick={() => openPopup(tour)}
+                        >
+                            <Card.Body style={{ flex: '1 1 auto' }}>
+                                <Card.Title>
+                                    <a style={{ textDecoration: 'none' }}>
+                                        {tour.tourName}
+                                    </a>
+                                </Card.Title>
+                                <Card.Text>
+                                    Địa điểm chuyến đi: {tour.destination}
+                                </Card.Text>
+                                <Card.Text>
+                                    Ngày khởi hành: {moment(tour.dateFrom).format('DD/MM/YYYY')}
+                                </Card.Text>
+                                <Card.Text>
+                                    Ngày kết thúc: {moment(tour.dateTo).format('DD/MM/YYYY')}
+                                </Card.Text>
+                                <Card.Text>
+                                    Giá cả chuyến đi: {tour.price} VNĐ
+                                </Card.Text>
+                            </Card.Body>
                         </Card>
+                       </Container>
                     );
                 }
 
@@ -71,7 +107,7 @@ const ListTour = (props) => {
                     {/* Add more details about the tour here */}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button style={{backgroundColor:"green"}}>
+                    <Button style={{ backgroundColor: "green" }} href={`../booking/${selectedTour._id}`}>
                         Đặt tour ngay
                     </Button>
                     <Button variant="secondary" onClick={closePopup}>
