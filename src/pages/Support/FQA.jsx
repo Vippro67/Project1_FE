@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 
 function FQA() {
   return (
-      <Container className='text-left'>
+      <Container className='text-left'  style={{backgroundColor:"#FFF"}}>
         <Accordion defaultActiveKey="0">
           <h2>Frequently asked question</h2>
           <Accordion.Item eventKey="0">

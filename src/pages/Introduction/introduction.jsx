@@ -6,10 +6,10 @@ import Navbar from '../../components/navbar';
 import intro from "../../acssets/img/Intro.jpg"
 const Introduction = () => {
   return (
-    <div>
+    <div  style={{backgroundColor:"#999"}} >
       <Header></Header>
       <Navbar></Navbar>
-      <Container>
+      <Container style={{backgroundColor:"#FFF"}}>
       <h1>Welcome to Our Travel Website!</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet,

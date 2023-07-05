@@ -57,7 +57,8 @@ const Destination = () => {
   };
 
   return (
-    <Container>
+   <div  style={{backgroundColor:"#999"}}>
+     <Container  style={{backgroundColor:"#FFF"}}>
       <Header></Header>
       <Navbar></Navbar>
       <Row>
@@ -118,6 +119,7 @@ const Destination = () => {
       )}
       <Footer></Footer>
     </Container>
+   </div>
   );
 };
 

@@ -18,9 +18,9 @@ const Footer = () => {
             <h5>Useful Links</h5>
             <ul className="list-unstyled">
               <li><a href="/">Homepage</a></li>
-              <li><a href="/about">About</a></li>
-              <li><a href="/services">Services</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li><a href="/blogs">Blog</a></li>
+              <li><a href="/introduction">Introduction</a></li>
+              <li><a href="/support">Support</a></li>
             </ul>
           </Col>
           <Col md={4}>

@@ -36,6 +36,7 @@ const ListTour = (props) => {
     return (
         <div>
             <h2>Chọn chuyến đi ngay tại đây </h2>
+            {}
             {tours.map(tour => {
                 const tourDateFrom = moment(tour.dateFrom);
                 const currentDate = moment();
@@ -85,8 +86,7 @@ const ListTour = (props) => {
                        </Container>
                     );
                 }
-
-                return null;
+                return (<h1>Không có tour của địa điểm này </h1>);
             })}
             {selectedTour._id ? (<Modal show={showPopup} onHide={closePopup}>
                 <Modal.Header closeButton>

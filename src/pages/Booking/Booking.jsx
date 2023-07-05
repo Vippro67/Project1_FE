@@ -27,6 +27,10 @@ const Booking = () => {
     }, [id]);
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if(email.length == 0 || name.length == 0 || phone.length == 0){
+            alert("Vui lòng nhập đầy đủ thông tin");
+            return;
+        }
         const postuser = {
             email: email,
             fullName: name,
@@ -38,6 +42,7 @@ const Booking = () => {
                     .then((res) => {
                         if (res.data._id != null) {
                             alert("Đặt tour thành công. Trong vòng 24 giờ bạn sẽ nhận được email, điện thoại xác nhận từ chúng tôi về việc thanh toán");
+                            window.location.href = "/";
                         }
                         else {
                             alert("Đặt tour thất bại. Vui lòng kiểm tra lại thông tin hoặc liên hệ với chúng tôi để được hỗ trợ");
@@ -47,10 +52,10 @@ const Booking = () => {
 
     };
     return (
-        <div>
+        <div style={{ backgroundColor: "#999" }}>
             <Header></Header>
             <Navbar></Navbar>
-            <Container>
+            <Container style={{ backgroundColor: "#FFF" }}>
                 <h1>Đặt tour</h1>
 
                 {tour != undefined ? <Container style={{ textAlign: 'left' }}>
@@ -72,7 +77,8 @@ const Booking = () => {
                     <form>
                         <Container className="form-group" style={{ textAlign: "left" }}>
                             <label htmlFor="name">Họ và tên</label>
-                            <input type="text" className="form-control" id="name" placeholder="Nhập họ và tên" onChange={e => setName(e.target.value)} />
+                            <input type="text" className="form-control" id="name" placeholder="Nhập họ và tên" onChange={e => setName(e.target.value)} required />
+
                             <label htmlFor="email">Email</label>
                             <input
                                 type="email"
@@ -82,13 +88,18 @@ const Booking = () => {
                                 onChange={e => setEmail(e.target.value)}
                                 required
                                 pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-                            />                            <label htmlFor="phone">Số điện thoại</label>
-                            <input type="text" className="form-control" id="phone" placeholder="Nhập số điện thoại" onChange={e => setPhone(e.target.value)} />
-                            <label htmlFor="number">Mã giảm giá nếu có </label>
+                            />
+
+                            <label htmlFor="phone">Số điện thoại</label>
+                            <input type="text" className="form-control" id="phone" placeholder="Nhập số điện thoại" onChange={e => setPhone(e.target.value)} required />
+
+                            <label htmlFor="number">Mã giảm giá nếu có</label>
                             <input type="text" className="form-control" id="number" placeholder="Nhập mã giảm giá" onChange={e => setVoucher(e.target.value)} />
+
                             <input type="submit" className="btn btn-primary" value="Đặt tour" onClick={e => handleSubmit(e)} />
                         </Container>
                     </form>
+
                 </div>
             </Container>
             <Footer></Footer>

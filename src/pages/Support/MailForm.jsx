@@ -2,7 +2,7 @@ import { Button, Container } from "react-bootstrap";
 
 function MailForm() {
     return (
-        <Container>
+        <Container style={{backgroundColor:"#FFF"}}>
             <div style={{ textAlign: 'left' }}>
                 <div>
                     <h2>Some office addresses </h2>

@@ -6,7 +6,7 @@ import FQA from './FQA';
 import MailForm from './MailForm';
 const Support = () => {
   return (
-    <div>
+    <div  style={{backgroundColor:"#999"}}>
       <Header></Header>
       <Navbar></Navbar>
       <FQA></FQA>

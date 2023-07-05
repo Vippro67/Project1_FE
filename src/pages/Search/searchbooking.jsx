@@ -12,6 +12,10 @@ const Booking = () => {
     const [userIdbyphone, setUserIdbyphone] = useState(() => '');
     const [bookingsbymail, setBookingsbymail] = useState(() => []);
     const [bookingsbyphone, setBookingsbyphone] = useState(() => []);
+
+    useEffect(() => {
+    }, [bookingsbymail, bookingsbyphone]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -78,49 +82,54 @@ const Booking = () => {
         }
         else if (bookingsbymail.length > 0)
             return (
-                bookingsbymail.map(booking => (
-                    <Card style={{ width: '18rem' }} key={booking._id}>
-                        <Card.Body>
-                            <Card.Title>Mã đơn đặt tour: {booking._id}</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">Tên người đặt tour: {booking.fullName}</Card.Subtitle>
-                            <Card.Text>Ngày khởi hành: {moment(booking.dateFrom).format('DD/MM/YYYY')}</Card.Text>
-                            <Card.Text>Ngày kết thúc: {moment(booking.dateFrom).format('DD/MM/YYYY')}</Card.Text>
-                            <Card.Text>Giá gốc : {booking.price}</Card.Text>
-                            <Card.Text>Giá trị voucher: {booking.valueVoucher}</Card.Text>
-                            <Card.Text>Giá sau khi giảm: {booking.price - booking.valueVoucher}</Card.Text>
-                            <Card.Text > Trạng thái đơn đặt tour: <span style={{ color: getStatusColor(booking.status) }}>
-                                {booking.status}
-                            </span></Card.Text>
-                        </Card.Body>
-                    </Card>
+                <Container style={{display:'flex', gap: '30px'}}>
+                {bookingsbymail.map(booking => (
+                <Card style={{ width: '18rem' }} key={booking._id}>
+                    <Card.Body>
+                        <Card.Title>Mã đơn đặt tour: {booking._id}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">Tên người đặt tour: {booking.fullName}</Card.Subtitle>
+                        <Card.Text>Ngày khởi hành: {moment(booking.dateFrom).format('DD/MM/YYYY')}</Card.Text>
+                        <Card.Text>Ngày kết thúc: {moment(booking.dateFrom).format('DD/MM/YYYY')}</Card.Text>
+                        <Card.Text>Giá gốc : {booking.price}</Card.Text>
+                        <Card.Text>Giá trị voucher: {booking.valueVoucher}</Card.Text>
+                        <Card.Text>Giá sau khi giảm: {booking.price - booking.valueVoucher}</Card.Text>
+                        <Card.Text > Trạng thái đơn đặt tour: <span style={{ color: getStatusColor(booking.status) }}>
+                            {booking.status}
+                        </span></Card.Text>
+                    </Card.Body>
+                </Card>
 
-                ))
+            ))}
+                </Container>
             )
         else if (bookingsbyphone.length > 0)
             return (
-                bookingsbyphone.map(booking => (
-                    <Card style={{ width: '18rem' }} key={booking._id}>
-                        <Card.Body>
-                            <Card.Title>Mã đơn đặt tour: {booking._id}</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">Tên người đặt tour: {booking.fullName}</Card.Subtitle>
-                            <Card.Text>Ngày khởi hành: {moment(booking.dateFrom).format('DD/MM/YYYY')}</Card.Text>
-                            <Card.Text>Ngày kết thúc: {moment(booking.dateFrom).format('DD/MM/YYYY')}</Card.Text>
-                            <Card.Text>Giá gốc : {booking.price}</Card.Text>
-                            <Card.Text>Giá trị voucher: {booking.valueVoucher}</Card.Text>
-                            <Card.Text>Giá sau khi giảm: {booking.price - booking.valueVoucher}</Card.Text>
-                            <Card.Text> Trạng thái đơn đặt tour: <span style={{ color: getStatusColor(booking.status) }}>
-                                {booking.status}
-                            </span></Card.Text>
-                        </Card.Body>
-                    </Card>
-                ))
+                <Container style={{display:'flex', gap: '30px'}}>
+                {bookingsbyphone.map(booking => (
+                <Card style={{ width: '18rem' }} key={booking._id}>
+                    <Card.Body>
+                        <Card.Title>Mã đơn đặt tour: {booking._id}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">Tên người đặt tour: {booking.fullName}</Card.Subtitle>
+                        <Card.Text>Ngày khởi hành: {moment(booking.dateFrom).format('DD/MM/YYYY')}</Card.Text>
+                        <Card.Text>Ngày kết thúc: {moment(booking.dateTo).format('DD/MM/YYYY')}</Card.Text>
+                        <Card.Text>Giá gốc : {booking.price}</Card.Text>
+                        <Card.Text>Giá trị voucher: {booking.valueVoucher}</Card.Text>
+                        <Card.Text>Giá sau khi giảm: {booking.price - booking.valueVoucher}</Card.Text>
+                        <Card.Text > Trạng thái đơn đặt tour: <span style={{ color: getStatusColor(booking.status) }}>
+                            {booking.status}
+                        </span></Card.Text>
+                    </Card.Body>
+                </Card>
+
+            ))}
+                </Container>
             )
     }
     return (
-        <div>
+        <div  style={{backgroundColor:"#999"}}>
             <Header></Header>
             <Navbar></Navbar>
-            <Container style={{ height: "100vh" }}>
+            <Container style={{ height: "100vh", backgroundColor:"#FFF"}}>
                 <h1>Tìm kiếm thông tin về đơn đã đặt</h1>
                 <form onSubmit={handleSubmit} style={{ textAlign: 'left' }}>
                     <div className="form-group">

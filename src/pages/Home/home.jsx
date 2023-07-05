@@ -5,15 +5,18 @@ import Navbar from '../../components/navbar';
 import ListDestination from '../../components/list-destination';
 import ListTourUpComing from '../../components/list-tour-upcoming';
 import SlideShow from '../../components/slide-show';
+import { Container } from 'react-bootstrap';
 
 const Home = () => {
   return (
-    <div>
+    <div style={{ backgroundColor: "#999" }}>
       <Header></Header>
       <Navbar></Navbar>
-      <SlideShow></SlideShow>
-      <ListDestination></ListDestination>
-     <ListTourUpComing></ListTourUpComing>
+      <Container style={{ backgroundColor: "#FFF" }}>
+        <SlideShow></SlideShow>
+        <ListDestination></ListDestination>
+        <ListTourUpComing></ListTourUpComing>
+      </Container>
       <Footer></Footer>
     </div>
   );

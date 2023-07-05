@@ -19,7 +19,6 @@ function App() {
           <Route path="/support" element={<Support />} />
           <Route path="/booking/:id" element={<Booking />} />
           <Route path="/search" element={<SearchBooking />} />
-          <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </BrowserRouter>
     </div>

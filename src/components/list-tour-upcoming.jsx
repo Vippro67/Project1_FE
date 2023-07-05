@@ -44,7 +44,7 @@ const ListTourUpComing = () => {
                     display: "flex",
                     flexWrap: 'wrap',
                     gap: '30px',
-                    padding: '30px auto',
+                    padding: '50px auto',
                     backgroundColor: '#fbd8fd'
                 }}
             >
